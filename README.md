@@ -1,50 +1,25 @@
-# Flutter : https://iut.tristanpct.dev/flutter/
+# Flutter Projects
 
-Bienvenue sur le dépôt GitHub de Flutter ! Ce projet est une application Flutter simple nommée "namer_app".
+Welcome to my Flutter Projects repository! Here, you'll find a collection of my development projects, each with its own Git repository. This directory contains various Flutter projects I have worked on, each with its own specific technologies and features.
 
-## Table des matières
+## Included Projects
 
-- [Introduction](#introduction)
-- [Prérequis](#prérequis)
-- [Installation](#installation)
-- [Utilisation](#utilisation)
-- [Contribution](#contribution)
-- [Licence](#licence)
+1. **Introduction to Flutter**
+   - **Description**: A basic introduction to Flutter, demonstrating the fundamentals of building cross-platform mobile applications.
+   - **Link**: [TD1 - Introduction to Flutter](https://iut.tristanpct.dev/flutter/td1/)
 
-## Introduction
+2. **Connecting to a Web API**
+   - **Description**: An application connecting to the OpenWeatherMap API to display weather information based on location or search.
+   - **Link**: [TD2 - Connecting to a Web API](https://iut.tristanpct.dev/flutter/td2/)
 
-Flutter est un framework open-source développé par Google pour créer des applications natives pour mobile, web et desktop à partir d'une seule base de code. Ce projet est une application de démonstration pour illustrer les bases de Flutter.
+3. **Event Application**
+   - **Description**: An application allowing administrators to manage events and users to register and indicate their presence at events.
+   - **Link**: [TD3 - Event Application](https://iut.tristanpct.dev/flutter/td3/)
 
-## Prérequis
+## Technologies Used
 
-Avant de commencer, assurez-vous d'avoir installé les outils suivants :
+Each project uses different technologies, including:
 
-- [Flutter SDK](https://flutter.dev/docs/get-started/install)
-- Un éditeur de code, comme [Visual Studio Code](https://code.visualstudio.com/) ou [Android Studio](https://developer.android.com/studio)
-
-## Installation
-
-1. Clonez ce dépôt sur votre machine locale :
-
-    ```bash
-    git clone https://github.com/melih0132/FLUTTER.git
-    ```
-
-2. Accédez au répertoire du projet :
-
-    ```bash
-    cd FLUTTER
-    ```
-
-3. Installez les dépendances du projet :
-
-    ```bash
-    FLUTTER pub get
-    ```
-
-## Utilisation
-
-Pour exécuter l'application, utilisez la commande suivante :
-
-```bash
-flutter run
+- **Languages**: Dart
+- **Frameworks**: Flutter
+- **Tools**: Git, GitHub, Visual Studio Code, OpenWeatherMap API, Geolocator, Provider
