@@ -22,4 +22,4 @@ Each project uses different technologies, including:
 
 - **Languages**: Dart
 - **Frameworks**: Flutter
-- **Tools**: Git, GitHub, Visual Studio Code, OpenWeatherMap API, Geolocator, Provider
+- **Tools**: Git, GitHub, Visual Studio Code
