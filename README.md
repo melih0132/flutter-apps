@@ -1,4 +1,4 @@
-# Flutter
+# Flutter : https://iut.tristanpct.dev/flutter/
 
 Bienvenue sur le dépôt GitHub de Flutter ! Ce projet est une application Flutter simple nommée "namer_app".
 
