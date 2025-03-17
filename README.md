@@ -27,19 +27,19 @@ Avant de commencer, assurez-vous d'avoir installé les outils suivants :
 1. Clonez ce dépôt sur votre machine locale :
 
     ```bash
-    git clone https://github.com/melih0132/flutter.git
+    git clone https://github.com/melih0132/FLUTTER.git
     ```
 
 2. Accédez au répertoire du projet :
 
     ```bash
-    cd flutter
+    cd FLUTTER
     ```
 
 3. Installez les dépendances du projet :
 
     ```bash
-    flutter pub get
+    FLUTTER pub get
     ```
 
 ## Utilisation
