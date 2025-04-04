@@ -82,22 +82,29 @@ class PollsState with ChangeNotifier {
     notifyListeners();
 
     try {
+      final pollJson = poll.toJson();
+      debugPrint('Envoi au serveur: ${json.encode(pollJson)}');
+
       final response = await http.post(
         Uri.parse('${Configs.baseUrl}/polls'),
         headers: {
           'Authorization': 'Bearer $_token',
           'Content-Type': 'application/json',
         },
-        body: json.encode(poll.toJson()),
+        body: json.encode(pollJson),
       );
+
+      debugPrint('Réponse du serveur: ${response.statusCode} ${response.body}');
 
       if (response.statusCode == 201) {
         await fetchPolls();
       } else {
         _handleErrorResponse(response);
+        debugPrint('Erreur détaillée: ${response.body}');
       }
     } catch (e) {
       _error = "Erreur création : $e";
+      debugPrint('Erreur complète: $e');
       notifyListeners();
     } finally {
       _isLoading = false;
@@ -163,7 +170,7 @@ class PollsState with ChangeNotifier {
     }
   }
 
-  Future<void> uploadImage(String pollId, File imageFile) async {
+  Future<void> uploadImage(int pollId, File imageFile) async {
     if (_token == null) return;
 
     _isLoading = true;

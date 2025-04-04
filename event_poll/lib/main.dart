@@ -7,6 +7,7 @@ import 'states/auth_state.dart';
 import 'states/polls_state.dart';
 import 'ui/event_list_page.dart';
 import 'ui/event_detail_page.dart';
+import 'ui/create_event_page.dart';
 import 'ui/login_page.dart';
 import 'ui/signup_page.dart';
 
@@ -50,7 +51,7 @@ class App extends StatelessWidget {
             ),
         '/polls/create': (context) => const AppScaffold(
               title: 'Ajouter un événement',
-              body: Placeholder(child: Center(child: Text('POLLS_CREATE'))),
+              body: CreateEventPage(),
             ),
         '/polls/detail': (context) => AppScaffold(
               title: 'Détails de l\'événement',
