@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+
 import 'package:weather_app/models/weather.dart';
 import 'package:weather_app/services/openweathermap_api.dart';
 
 final _dateFormatter = DateFormat.MMMMEEEEd();
 final _hourFormatter = DateFormat.Hm();
 
-String _formatTemp(double value) {
-  return '${((value * 10).round() / 10)}°C';
-}
+// Cette fonction formate la température à une décimale près et ajoute "°C" à la fin.
+String _formatTemp(double value) => '${((value * 10).round() / 10)}°C';
 
-String _formatSpeed(double value) {
-  return '${value.round()} km/h';
-}
+// Cette fonction formate la vitesse du vent à l'entier près et ajoute "km/h" à la fin.
+String _formatSpeed(double value) => '${value.round()} km/h';
 
-String _capitalize(String value) {
-  return value[0].toUpperCase() + value.substring(1);
-}
+// Cette fonction met la première lettre d'une chaîne de caractères en majuscule et le reste en minuscule.
+String _capitalize(String value) => value[0].toUpperCase() + value.substring(1);
 
 class WeatherBlock extends StatelessWidget {
   const WeatherBlock(this.weather, {super.key});
@@ -28,6 +26,7 @@ class WeatherBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+    // On utilise un Card pour afficher les informations météo de manière stylisée.
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -36,12 +35,14 @@ class WeatherBlock extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
+                // On affiche l'icône météo.
                 Image.network(
                   context.read<OpenWeatherMapApi>().getIconUrl(
                         weather.icon,
                         OpenWeatherMapIconSize.large,
                       ),
                 ),
+
                 Column(
                   children: [
                     Text(
@@ -107,6 +108,7 @@ class WeatherTile extends StatelessWidget {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
+        // On utilise un ConstrainedBox pour limiter la largeur de l'élément.
         child: ConstrainedBox(
           constraints: const BoxConstraints(
             minWidth: 128,
@@ -127,6 +129,7 @@ class WeatherTile extends StatelessWidget {
                 _capitalize(weather.description),
                 textAlign: TextAlign.center,
               ),
+              // Spacer pour espacer l'icône de la température.
               const Spacer(flex: 1),
               Row(
                 mainAxisSize: MainAxisSize.min,

@@ -11,6 +11,7 @@ class Location {
   final double lon;
   final String country;
 
+  // Constructeur qui initialise les propriétés de la classe à partir d'un JSON
   Location.fromJson(Map<String, dynamic> json)
       : this(
           name: json['name'] as String,

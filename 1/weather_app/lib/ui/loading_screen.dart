@@ -16,16 +16,21 @@ class LoadingScreen extends StatefulWidget {
 class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState() {
+    // super.initState() est une méthode qui appelle la méthode initState de la classe parente (State).
+    // Cela permet d'exécuter le code de la classe parente avant d'exécuter le code de la classe enfant.
     super.initState();
     getLocationData();
   }
 
   void getLocationData() async {
+    // Utilisation de context.read pour accéder à GeolocationService et OpenWeatherMapApi
     final geolocationService = context.read<GeolocationService>();
 
+    // Vérification du statut de la géolocalisation
     final geolocationStatus = await geolocationService.checkStatus();
 
     if (geolocationStatus == GeolocationStatus.available) {
+      // Si la géolocalisation est disponible, on essaie d'obtenir la position actuelle
       final position = await geolocationService.getCurrentPosition();
 
       if (position != null && mounted) {
@@ -34,9 +39,12 @@ class _LoadingScreenState extends State<LoadingScreen> {
             .getLocationName(position.latitude, position.longitude);
 
         if (mounted) {
+          // On utilise Navigator.pushReplacement pour remplacer la page actuelle par WeatherPage
           Navigator.pushReplacement(
             context,
+            // On utilise MaterialPageRoute pour créer une nouvelle route vers WeatherPage
             MaterialPageRoute(
+              // On passe les paramètres nécessaires à WeatherPage
               builder: (context) => WeatherPage(
                 locationName: locationName ?? 'À votre position',
                 latitude: position.latitude,

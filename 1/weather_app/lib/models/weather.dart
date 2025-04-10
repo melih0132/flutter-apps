@@ -19,6 +19,7 @@ class Weather {
   final double windSpeed;
   final DateTime dateTime;
 
+  // Constructeur qui initialise les propriétés de la classe à partir d'un JSON
   factory Weather.fromJson(Map<String, dynamic> json) {
     final weather = json['weather'][0] as Map<String, dynamic>;
     final main = json['main'] as Map<String, dynamic>;

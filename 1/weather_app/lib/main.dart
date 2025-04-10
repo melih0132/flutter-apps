@@ -4,8 +4,10 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'config.dart';
+
 import 'services/geolocation_service.dart';
 import 'services/openweathermap_api.dart';
+
 import 'ui/loading_screen.dart';
 
 void main() {
