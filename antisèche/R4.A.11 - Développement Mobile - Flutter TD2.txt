@@ -1,0 +1,158 @@
+1. Configuration Initiale
+
+Créer le projet
+flutter create weather_app
+
+Dépendances clés
+flutter pub add provider http geolocator intl
+
+Fichiers à ajouter :
+- lib/services/openweathermap_api.dart → Gestion des appels API
+- lib/services/geolocation_service.dart → Géolocalisation
+- lib/models/location.dart et weather.dart → Modèles de données
+
+---
+
+2. Clé API OpenWeatherMap
+1. Créer un compte sur openweathermap.org
+2. Générer une clé API
+3. Dans lib/config.dart :
+const openWeatherMapApiKey = 'VOTRE_CLE_API';
+
+---
+
+3. Architecture Provider
+main.dart :
+void main() {
+  runApp(
+    MultiProvider(
+      providers: [
+        Provider(create: (_) => OpenWeatherMapApi(apiKey: openWeatherMapApiKey)),
+        Provider(create: (_) => GeolocationService()),
+      ],
+      child: WeatherApp(),
+    ),
+  );
+}
+
+---
+
+4. Page de Recherche (SearchPage)
+Fonctionnalités :
+- Champ de saisie avec TextField
+- Bouton de recherche déclenchant searchLocations()
+- Affichage des résultats avec FutureBuilder
+
+Code clé :
+
+Récupération des données
+final openWeatherMapApi = context.read<OpenWeatherMapApi>();
+FutureBuilder<Iterable<Location>>(
+  future: locationsSearchResults,
+  builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting)
+      return CircularProgressIndicator();
+
+    Afficher les résultats avec ListTile
+  },
+);
+
+---
+
+5. Page Météo (WeatherPage)
+Intégration API :
+Future<Weather> getWeather(double lat, double lon) async {
+  final response = await http.get(Uri.parse('...'));
+
+  Conversion JSON → Weather avec Weather.fromJson()
+}
+
+Affichage :
+- Température, conditions, icône (Image.network())
+- Utiliser DateFormat pour formater les dates :
+DateFormat('EEEE dd MMMM', 'fr_FR').format(date);
+
+---
+
+6. Géolocalisation
+AndroidManifest.xml :
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+Chargement initial (LoadingScreen) :
+void getLocationData() async {
+  try {
+    final position = await GeolocationService().getCurrentPosition();
+    if (mounted) Navigator.pushReplacement(...);
+  } catch (e) {
+    Navigator.pushReplacement(...);
+  }
+}
+
+---
+
+7. Navigation
+Entre les pages :
+
+Vers WeatherPage
+Navigator.push(
+  context,
+  MaterialPageRoute(builder: (context) => WeatherPage(...)),
+);
+
+Retour arrière
+Navigator.pop(context);
+
+Gestion historique :
+- Navigator.pushReplacement pour écrans de démarrage
+
+---
+
+8. Bonnes Pratiques
+- Sécurité : Ne pas commit la clé API (ajouter config.dart à .gitignore)
+- Gestion d'erreurs :
+  if (response.statusCode != 200) throw Exception('Erreur HTTP');
+- UI Responsive : Utiliser LayoutBuilder pour adapter le layout mobile/desktop
+
+---
+
+9. Extensions Possibles
+1. Affichage avancé :
+
+Données supplémentaires dans Weather
+double feelsLike;
+int humidity;
+double windSpeed;
+
+2. Géocodage inversé :
+
+Appel API reverse geocoding
+openweathermap.org/geo/1.0/reverse?lat={lat}&lon={lon}
+
+3. Prévisions 5 jours :
+
+Endpoint
+openweathermap.org/data/2.5/forecast
+Utiliser ListView horizontale
+
+---
+
+10. Débogage & Erreurs Courantes
+
+Problème : MissingPluginException
+Solution : Lancer flutter clean + rebuild
+
+Problème : Pas de données API
+Solution : Vérifier la clé API + connexion internet
+
+Problème : Crash sur émulateur
+Solution : Activer les permissions de localisation
+
+Problème : UI ne se met pas à jour
+Solution : Vérifier setState()/notifyListeners()
+
+---
+
+Documentation Utile :
+- OpenWeatherMap API Doc
+- Flutter HTTP
+- Provider Package

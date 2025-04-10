@@ -5,7 +5,7 @@ import '../models/location.dart';
 import 'weather_page.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({Key? key}) : super(key: key);
+  const SearchPage({super.key});
 
   @override
   _SearchPageState createState() => _SearchPageState();
@@ -79,7 +79,7 @@ class _SearchPageState extends State<SearchPage> {
                             .map(
                               (location) => ListTile(
                                 title: Text(location.name),
-                                subtitle: Text('${location.country}'),
+                                subtitle: Text(location.country),
                                 onTap: () {
                                   Navigator.push(
                                     context,
